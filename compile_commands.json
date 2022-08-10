@@ -1,0 +1,41 @@
+[
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-DROSCONSOLE_BACKEND_LOG4CXX",
+            "-DROS_BUILD_SHARED_LIBS=1",
+            "-DROS_PACKAGE_NAME=\"f1tenth_simulator\"",
+            "-I/home/ubuntu/ros_ws/src/f1tenth_simulator/include",
+            "-I/opt/ros/noetic/include",
+            "-I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp",
+            "-I/usr/include/eigen3",
+            "-Wall",
+            "-Wextra",
+            "-O3",
+            "-std=gnu++11",
+            "-o",
+            "CMakeFiles/simulator.dir/node/simulator.cpp.o",
+            "../../src/f1tenth_simulator/node/simulator.cpp"
+        ],
+        "directory": "/home/ubuntu/ros_ws/build/f1tenth_simulator",
+        "file": "../../src/f1tenth_simulator/node/simulator.cpp"
+    },
+    {
+        "arguments": [
+            "/usr/bin/c++",
+            "-c",
+            "-DROSCONSOLE_BACKEND_LOG4CXX",
+            "-DROS_BUILD_SHARED_LIBS=1",
+            "-DROS_PACKAGE_NAME=\"lab1\"",
+            "-I/home/ubuntu/ros_ws/src/lab1/include",
+            "-I/opt/ros/noetic/include",
+            "-I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp",
+            "-o",
+            "CMakeFiles/lab1_node.dir/src/scan_ranges.cpp.o",
+            "../../src/lab1/src/scan_ranges.cpp"
+        ],
+        "directory": "/home/ubuntu/ros_ws/build/lab1",
+        "file": "../../src/lab1/src/scan_ranges.cpp"
+    }
+]
