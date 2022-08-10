@@ -2,13 +2,15 @@ r"""
 This module defines the `ScanRanges` class, which subscribes to the `/scan`
 topic, from which it reads a `LaserScan` message and publishes the closest and
 farthest points to `/closest_point` and `/farthest_point`, respectively as
-`Float64` values.
+`Float64` values. There is an additional publisher that also publishes the
+range as a `ScanRange` to `/scan_range`
 """
 
 # ROS Imports
 from std_msgs.msg import Float64
 from sensor_msgs.msg import LaserScan
 import rospy as ros
+from lab1.msg import scan_range
 
 # Useful Imports
 import numpy as np
@@ -25,6 +27,7 @@ class ScanRanges:
         # Define our publishers
         self.pub_closest = ros.Publisher("closest_point", Float64, queue_size=10)
         self.pub_farthest = ros.Publisher("farthest_point", Float64, queue_size=10)
+        self.pub_range = ros.Publisher("scan_range", scan_range, queue_size=10)
 
         # It's always best to add a queue_size because there's nothing more annoying
         # than running out of memory because of an unbounded buffer and a slow function.
@@ -91,6 +94,7 @@ class ScanRanges:
         # Publish our data!
         self.pub_closest.publish(Float64(min))
         self.pub_farthest.publish(Float64(max))
+        self.pub_range.publish(scan_range(min, max))
 
     def run(self) -> None:
         """

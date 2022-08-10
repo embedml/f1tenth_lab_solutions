@@ -3,11 +3,12 @@
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
 #include "sensor_msgs/LaserScan.h"
+#include "lab1/scan_range.h"
 
 class ScanRanges {
     ros::NodeHandle nh;
     ros::Subscriber sub;
-    ros::Publisher pubClosest, pubFarthest;
+    ros::Publisher pubClosest, pubFarthest, pubRange;
 
     void processScan(const sensor_msgs::LaserScan::ConstPtr& msg) {
         float minData = INFINITY, maxData = -INFINITY;
@@ -24,11 +25,17 @@ class ScanRanges {
             return;
 
         std_msgs::Float64 min, max;
+        lab1::scan_range range;
+
         min.data = minData;
         max.data = maxData;
 
+        range.closest = minData;
+        range.farthest = maxData;
+
         pubClosest.publish(min);
         pubFarthest.publish(max);
+        pubRange.publish(range);
     }
 
 public:
@@ -40,6 +47,7 @@ public:
 
         pubClosest = nh.advertise<std_msgs::Float64>("closest_point", 10);
         pubFarthest = nh.advertise<std_msgs::Float64>("farthest_point", 10);
+        pubRange = nh.advertise<lab1::scan_range>("scan_range", 10);
     }
 
     void run() {
