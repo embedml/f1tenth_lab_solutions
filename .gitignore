@@ -1,2 +1,4 @@
 /build
 /devel
+/.cache
+/.catkin_workspace
